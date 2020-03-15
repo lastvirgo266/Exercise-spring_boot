@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,12 +35,13 @@ public class RestApiController {
 		return  new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/test/create", method= RequestMethod.POST)
+	@RequestMapping(value="/test/create", consumes =  MediaType.APPLICATION_JSON_VALUE, method= RequestMethod.POST)
 	public ResponseEntity<?> TestCreate(@RequestBody UserEntity user) throws Exception {
-		userService.saveUser(user);
 		log.info(user.toString());
+		userService.saveUser(user);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
 	
 	@RequestMapping(value="/test/read/{id}", method= RequestMethod.GET)
 	public ResponseEntity<?> TestRead(@PathVariable("id") int userId) throws Exception {
