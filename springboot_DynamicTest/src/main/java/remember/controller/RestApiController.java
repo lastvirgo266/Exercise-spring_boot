@@ -41,8 +41,8 @@ public class RestApiController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/test/read", method= RequestMethod.GET)
-	public ResponseEntity<?> TestRead(@RequestBody int userId) throws Exception {
+	@RequestMapping(value="/test/read/{id}", method= RequestMethod.GET)
+	public ResponseEntity<?> TestRead(@PathVariable("id") int userId) throws Exception {
 		UserEntity user = userService.selectUser(userId);
 		
 		if(user == null)
