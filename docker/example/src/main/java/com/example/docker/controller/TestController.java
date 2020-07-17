@@ -13,11 +13,9 @@ public class TestController {
 
 
     @RequestMapping(value = "/test")
-    public ResponseEntity<?> test(){
-
+    public String test(){
         
-
-        return new ResponseEntity
+        return "Test";
 
     }
 
